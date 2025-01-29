@@ -1,0 +1,19 @@
+//blink the AL led at 1ms rate
+sfr P2=0xA0;
+sbit LED=P2^0; //connect the LED to Port 2 Zeroth Bit pin
+void delay(unsigned int ms){
+	for(;ms>0;ms--){
+		unsigned char i;
+		i=250;
+		while(--i);
+		i=247;
+		while(--i);
+	}
+}
+void main()
+{ //pass the delay needed in ms
+	LED=0;
+	delay(1000);//calling fn takes 2 mc and returning to fn also takes 2 mc
+	LED=1;
+	delay(1000);
+}
