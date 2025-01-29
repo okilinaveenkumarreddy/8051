@@ -1,0 +1,16 @@
+//generating variable milli second Delay using EMB C
+#include <reg51.h>
+void delay(unsigned int ms){
+	for(;ms>0;ms--){
+		unsigned char i;
+		i=250;
+		while(--i);
+		i=247;
+		while(--i);
+	}
+}
+void main()
+{ //pass the delay needed in ms
+	delay(1000);//calling fn takes 2 mc and returning to fn also takes 2 mc
+	while(1);
+}
