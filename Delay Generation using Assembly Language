@@ -1,0 +1,7 @@
+;asm code for generating exact 1 milli second
+CSEG AT 0X0
+	MOV R0,#250;1mc
+	DJNZ R0,$;500mc
+	MOV R0,#249;1mc
+	DJNZ R0,$;498mc
+END
