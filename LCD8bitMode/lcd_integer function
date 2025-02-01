@@ -1,0 +1,26 @@
+
+/*display integer on LCD*/
+
+void lcd_integer(s32 num){
+	s32 temp;
+	s8 i;
+	u8 digits,arr[8];
+	
+	if(num==0)
+		lcd_data(num+48);
+	else if(num<0){
+		num=-num;
+		lcd_data('-');
+	}
+		temp=num;
+		//find how many digit number you received
+		while(temp!=0){
+			arr[digits]=temp%10;
+			digits++;
+			temp/=10;
+		}
+		for(i=digits-1;i>=0;i--){
+			lcd_data((arr[i])+48);
+		}
+	
+}
