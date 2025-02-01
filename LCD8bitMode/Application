@@ -1,0 +1,31 @@
+#include "header.h"
+/*Write an EMB C program to set the timer using SW1_PIN Switch and decrement the timer value 
+when the SW2_pin Switch pressed 
+remainder: set the timer value upt0 59 then roll over to 0*/
+void main(){
+	lcd_init();
+	lcd_cmd(0x0C);
+	while(1){
+	s8 c;
+	while(io_bit_read(PORT2,SW2_PIN)==1){
+		if(io_bit_read(PORT2,SW1_PIN)==0){
+			c++;
+			while(io_bit_read(PORT2,SW1_PIN)==0);
+			if(c==60){
+				c=0;
+			}
+		}
+		/*display incremented count*/
+		lcd_cmd(0x80);
+		lcd_data((c/10)+48);
+		lcd_data((c%10)+48);
+	}
+	for(;c>0;c--)
+	{
+		lcd_cmd(0x80);
+		lcd_data((c/10)+48);
+		lcd_data((c%10)+48);
+		delay_ms(1000);
+	}
+  }
+}
