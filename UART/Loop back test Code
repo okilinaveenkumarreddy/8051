@@ -1,0 +1,12 @@
+/*main_uart.c*/
+#include "header.h"
+void main(){
+	u8 temp;
+	uart_init(9600);//for synchronization between slave and master.
+	while(1){
+		/*LOOP BACK:receiving the data From Serial Terminal 
+		and Retransmitting the received data back to serial terminal*/
+		temp=uart_rx();//UART loop Back 
+		uart_tx(temp);
+	}
+}
